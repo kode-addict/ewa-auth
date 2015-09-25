@@ -80,15 +80,7 @@ class AuthController extends Controller
         
     }
 
-    protected function FbUserData(array $data)
-    {
-        $user = Socialite::driver('facebook')->user();
-        return FbUserRegister::create([
-            'name' => $data['name']  
-        ]);
-    }
-
-
+    
     // User Register
     public function getRegister()
     {
@@ -111,8 +103,9 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    
 
-    // Fb LoginAuthentication
+// Fb LoginAuthentication
 
    
 
@@ -123,11 +116,36 @@ class AuthController extends Controller
 
     public function handleProviderCallback()
     {   
-        $user = Socialite::driver('facebook')->user();
-        return dd($user);
-        
+       
+        try {
+
+            $user = Socialite::driver('facebook')->user();
+
+        } catch (Exception $e) {
+
+            return redirect('auth/login');
+        }
+
+        $authUser = $this->findOrCreateUser($user);
+
+        Auth::login($authUser, true);
+
+        return redirect('user/welcome');
     }
 
+    private function findOrCreateUser($FbUser)
+    {
+        if ($authUser = FbUserRegister::where('email', $FbUser->email)->first()) {
+            return $authUser;
+        }
+
+        return FbUserRegister::create([
+            // 'fb_id' => $FbUser->id,
+            'name' => $FbUser->name,
+            'email' => $FbUser->email,          
+            'avatar' => $FbUser->avatar
+        ]);
+    }
 
 }
 

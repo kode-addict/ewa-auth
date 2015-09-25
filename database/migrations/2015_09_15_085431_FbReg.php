@@ -15,9 +15,12 @@ class FbReg extends Migration
         //
          Schema::create('fbusers', function (Blueprint $table) {
             $table->increments('id');
+            // $table->string('fb_id')->unique();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('avatar');
+
+            $table->rememberToken();
             $table->timestamps();
         });
         //  Schema::create('fbusers', function(Blueprint $table)

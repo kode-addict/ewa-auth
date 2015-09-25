@@ -22,7 +22,7 @@ class User extends Model implements AuthenticatableContract,
      * @var string
      */
    
-
+    // protected $table = 'fbusers';
 
     /**
      * The attributes that are mass assignable.
@@ -30,6 +30,7 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $fillable = ['name', 'email', 'password'];
+    // protected $fillable = ['name', 'email', 'avatar'];
 
     /**
      * The attributes excluded from the model's JSON form.

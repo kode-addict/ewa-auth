@@ -49,14 +49,20 @@
 			<button class="ui green button" type="submit">Login</button>
 
 			</form>
-						<hr>
-			<label>Login with Facebook account</label>
+			<h3>or</h3>
+			<label>Login with Facebook account</label><br>
 			<form class="ui form" action="{{ url('auth/login_with_fb') }}" method="GET">
 				<!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
 				<!-- <input type="hidden" value="/account/team_check/?next=/" name="next"> -->
 				<!-- <button class="ui facebook button" type="submit"> Facebook </button> -->
 				<input class="ui facebook button" value="Facebook" type="submit">
 			</form>
+			<hr><br>
+				<a href="{{ url('password/email') }}">Forget Your Password ?</a><br>
+				<label>There is no account?</label><br><a href="{{ url('/register') }}">Sign up Here</a>
+						
+			
+			
 
 		</section> <!-- Candidate Detail END -->
 

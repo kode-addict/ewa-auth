@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+    'port' => env('MAIL_PORT'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => env('MAIL_FROM'), 'name' => env('MAIL_NAME')],
 
     /*
     |--------------------------------------------------------------------------
@@ -64,8 +64,8 @@ return [
     | Here you may specify the encryption protocol that should be used when
     | the application send e-mail messages. A sensible default using the
     | transport layer security protocol should provide great security.
-    |
-    */
+    |*/
+    
 
     'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
@@ -122,3 +122,18 @@ return [
     'pretend' => false,
 
 ];
+
+
+// return [
+//   "driver" => "smtp",
+//   "host" => "mailtrap.io",
+//   "port" => 2525,
+//   "from" => array(
+//       "address" => "from@exampe.com",
+//       "name" => "Example"
+//   ),
+//   "username" => "45163ef734bfff385",
+//   "password" => "19fa099ffa4ece",
+//   "sendmail" => "/usr/sbin/sendmail -bs",
+//   "pretend" => false
+// ];
